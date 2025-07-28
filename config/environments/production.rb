@@ -73,9 +73,23 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.sendgrid.net',
+    port:                 '587',
+    domain:               ENV.fetch('SENDGRID_DOMAIN', 'heroku.com'), # Pega do ENV, com fallback para 'heroku.com'
+    user_name:            'apikey', # É literal 'apikey' para usar a API Key
+    password:             ENV['SENDGRID_API_KEY'], # Pega do ENV
+    authentication:       'plain',
+    enable_starttls_auto: true
+  }
+  # Host para gerar URLs nos e-mails (crucial para Devise)
+  config.action_mailer.default_url_options = { host: 'rafa-photo-app.herokuapp.com' }
+
+
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  # config.action_mailer.raise_delivery_errors = false
+ config.action_mailer.raise_delivery_errors = true
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
@@ -88,10 +102,9 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # Enable DNS rebinding protection and other `Host` header attacks.
-  # config.hosts = [
-  #   "example.com",     # Allow requests from example.com
-  #   /.*\.example\.com/ # Allow requests from subdomains like `www.example.com`
-  # ]
+  config.hosts = [
+    "https://rafa-photo-app-7b150859340d.herokuapp.com/"     # Allow requests from example.com
+  ]
   # Skip DNS rebinding protection for the default health check endpoint.
-  # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+  config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 end
