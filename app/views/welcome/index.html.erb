@@ -1,2 +1,66 @@
-<h1>Welcome to photo app</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<% if current_user %>
+  <h3>Welcome: <%= current_user.email %></h3>
+<% else %>
+  <div class="p-5 mb-4 rounded-3 text-center" style="
+    background-image: url('<%= asset_path 'welcome-background.jpg' %>');
+    background-size: cover;
+    background-position: center center;
+    color: white; /* Garante que o texto seja legível sobre a imagem escura */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Adiciona sombra ao texto para melhorar a legibilidade */
+  ">
+    <div class="container-fluid py-5">
+      <h1 class="display-5 fw-bold">Welcome to the Photo Management App!</h1>
+      <p class="fs-4">You'll love managing your Photos with our application. Sign up!</p>
+    </div>
+  </div>
+
+  <%# Seção de Planos com Cards do Bootstrap 5 %>
+  <div class="row row-cols-1 row-cols-md-2 g-4 justify-content-center"> <%# row-cols-1 para mobile, row-cols-md-2 para tablet/desktop, g-4 para gap entre colunas/linhas, justify-content-center para centralizar os cards %>
+    <div class="col"> <%# Cada 'plan' vira uma coluna %>
+      <div class="card h-100 shadow-sm"> <%# card para o bloco, h-100 para altura igual, shadow-sm para sombra %>
+        <div class="card-header text-center bg-primary text-white"> <%# card-header para o título, bg-primary para fundo azul, text-white para texto branco %>
+          <h2 class="h4 mb-0">Premium Plan</h2> <%# h4 para tamanho de título, mb-0 para remover margin-bottom %>
+        </div>
+        <div class="card-body text-center"> <%# card-body para o conteúdo principal %>
+          <div class="fs-3 fw-bold mb-3"> <%# fs-3 para font-size grande, fw-bold para negrito, mb-3 para margin-bottom %>
+            Price: $10
+          </div>
+          <div class="features text-start mx-auto" style="max-width: 200px;"> <%# text-start para alinhar lista à esquerda, mx-auto para centralizar, max-width para controlar largura da lista %>
+            <ul class="list-unstyled"> <%# list-unstyled remove bullets padrão %>
+              <li><i class="bi bi-check-circle-fill text-success me-2"></i>Unlimited Image Uploads</li> <%# bi para Bootstrap Icons, text-success para cor verde, me-2 para margin-end %>
+              <li><i class="bi bi-check-circle-fill text-success me-2"></i>Responsive design</li>
+              <li><i class="bi bi-check-circle-fill text-success me-2"></i>Access anywhere</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card-footer text-center"> <%# card-footer para o botão %>
+          <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-primary sign-up' %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col"> <%# Segundo 'plan' %>
+      <div class="card h-100 shadow-sm">
+        <div class="card-header text-center bg-success text-white"> <%# bg-success para fundo verde %>
+          <h2 class="h4 mb-0">Amaze Plan</h2>
+        </div>
+        <div class="card-body text-center">
+          <div class="fs-3 fw-bold mb-3">
+            Price: $20
+          </div>
+          <div class="features text-start mx-auto" style="max-width: 200px;">
+            <ul class="list-unstyled">
+              <li><i class="bi bi-check-circle-fill text-success me-2"></i>Unlimited Image Uploads</li>
+              <li><i class="bi bi-check-circle-fill text-success me-2"></i>Responsive design</li>
+              <li><i class="bi bi-check-circle-fill text-success me-2"></i>Access anywhere</li>
+              <li class='extra'><i class="bi bi-star-fill text-warning me-2"></i>Unlimited projects</li> <%# bi-star-fill para ícone de estrela, text-warning para cor amarela %>
+            </ul>
+          </div>
+        </div>
+        <div class="card-footer text-center">
+          <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-primary sign-up' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
