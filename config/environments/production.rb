@@ -84,7 +84,7 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
   # Host para gerar URLs nos e-mails (crucial para Devise)
-  config.action_mailer.default_url_options = { host: 'rafa-photo-app.herokuapp.com' }
+  config.action_mailer.default_url_options = { host: 'rafa-photo-app-7b150859340d.herokuapp.com', protocol: 'https' }
 
 
   # Ignore bad email addresses and do not raise email delivery errors.
