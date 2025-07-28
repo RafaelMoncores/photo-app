@@ -20,7 +20,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0"> <%# 'me-auto' empurra os itens seguintes para a direita %>
           <li class="nav-item">
             <%= link_to "Link1", "/path1", class: "nav-link"  %>
           </li>
@@ -31,6 +31,22 @@
             <%= link_to "Link3", "/path3", class: "nav-link"  %>
           </li>
         </ul>
+
+        <ul class="navbar-nav mb-2 mb-lg-0"> <%# Estes itens ficarão à direita %>
+          <% if current_user %>
+            <li class="nav-item me-2"> <%# Use 'me-2' para margem à direita %>
+              <%= link_to (truncate(current_user.email, length: 25)).html_safe,
+              edit_user_registration_path, title: 'Edit Profile', class: "nav-link" %> <%# Adicione nav-link %>
+            </li>
+            <li class="nav-item">
+              <%= button_to('Logout', destroy_user_session_path, method: :delete, class: 'btn btn-danger', title: 'Logout') %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to('Sign In', new_user_session_path, class: 'btn btn-primary', title: 'Sign In') %>
+            </li>
+          <% end %>
+        </ul>
       </div>
     </div>
   </nav>
@@ -40,14 +56,6 @@
         <div class="col-lg-9">
           <%= bootstrap_flash %>
           <%= yield %>
-        </div>
-        <div class="col-lg-3">
-          <h3>Sidebar</h3>
-          <ul class="list-unstyled">
-            <li><%= link_to "Link1", "/path1"  %></li>
-            <li><%= link_to "Link2", "/path2"  %></li>
-            <li><%= link_to "Link3", "/path3"  %></li>
-          </ul>
         </div>
       </div><!--/row-->
 
