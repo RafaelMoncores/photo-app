@@ -103,7 +103,7 @@ Rails.application.configure do
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   config.hosts = [
-    "https://rafa-photo-app-7b150859340d.herokuapp.com/"     # Allow requests from example.com
+    /\Arafa-photo-app(?:-[0-9a-f]+)?\.herokuapp\.com\z/     # Allow requests from example.com
   ]
   # Skip DNS rebinding protection for the default health check endpoint.
   config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
