@@ -11,6 +11,7 @@ gem "bootstrap"
 gem "sassc-rails"
 gem "devise-bootstrap-views"
 gem "jquery-rails"
+gem "stripe"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
