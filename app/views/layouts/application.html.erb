@@ -6,10 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "PhotoApp" %></title>
     <%= csrf_meta_tags %>
+    <%= csp_meta_tag %> <%# Adicionado: Meta tag para Content Security Policy, boa prática no Rails 6+ %>
 
-    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %> <%# Removido media: "all" %>
 
-    <%= javascript_include_tag "application" %>
+    <script src="https://js.stripe.com/v3/"></script>
+
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %> <%# Adicionado defer: true e data-turbo-track: "reload" %>
   </head>
   <body>
 
@@ -57,13 +60,10 @@
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
-      </div><!--/row-->
-
+      </div>
       <footer>
         <p>&copy; Company 2025</p>
       </footer>
-
-    </div> <!-- /container -->
-
+    </div>
   </body>
 </html>
