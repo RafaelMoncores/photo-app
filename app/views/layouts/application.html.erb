@@ -49,11 +49,13 @@
         </div>
       </div>
     </nav>
+    <div class="container mt-3" data-turbo-cache="false"> <%# <-- ADICIONE AQUI! %>
+      <%= bootstrap_flash %>
+    </div>
 
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <%= bootstrap_flash %>
           <%= yield %>
         </div>
       </div>
@@ -61,5 +63,7 @@
         <p>&copy; Company 2025</p>
       </footer>
     </div>
+
+    <%= javascript_importmap_tags %>
   </body>
 </html>

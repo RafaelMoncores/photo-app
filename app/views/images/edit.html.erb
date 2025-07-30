@@ -1,0 +1,10 @@
+<div class="container my-4">
+  <h1>Editing Image</h1>
+
+  <%= render "form", image: @image %>
+
+  <div class="mt-4">
+    <%= link_to "Show this image", @image, class: "btn btn-secondary me-2" %>
+    <%= link_to "Back to images", images_path, class: "btn btn-link" %>
+  </div>
+</div>
