@@ -20,15 +20,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0"> <%# 'me-auto' empurra os itens seguintes para a direita %>
-            <li class="nav-item">
-              <%= link_to "Link1", "/path1", class: "nav-link"  %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Link2", "/path2", class: "nav-link"  %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Link3", "/path3", class: "nav-link"  %>
-            </li>
+            <% if current_user %> <%# O link "Images" só aparece se o usuário estiver logado %>
+              <li class="nav-item">
+                <%= link_to "Images", images_path, class: "nav-link" %>
+              </li>
+            <% end %>
           </ul>
 
           <ul class="navbar-nav mb-2 mb-lg-0"> <%# Estes itens ficarão à direita %>
